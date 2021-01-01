@@ -8,15 +8,26 @@ AL-DIC(Augmented Lagrangian DIC) is a fast, parallel-computing hybrid DIC algori
 * [4]	No need of much manual experience about choosing displacement smoothing filters.
 * [5]	It works well with compressed DIC images and adaptive mesh. See our paper: Yang, J. & Bhattacharya, K. Exp Mech (2019). https://doi.org/10.1007/s11340-018-00459-y;
 * [6]	Both accumulative and incremental DIC modes are implemented to deal with image sequences, which is especially quite useful for very large deformations.
+* [7]	ALDIC application example -- uniaxial compression experiment:
+https://github.com/jyang526843/2D_ALDIC_v3/blob/master/Example_aldic_foam_compression_strain_eyy.gif
+* [8]	ALDIC is extended with adaptive quadtree mesh to solve complex geometry. Some examples: https://uwmadison.box.com/s/4n5hmf04rzp4la96bt2rcjk4f6o5d5nf
 
 ## Prerequisites & Installation
 AL-DIC MATLAB code was tested on MATLAB versions later than R2018a. Both single thread and parallel computing features are included in AL-DIC code. Please download and unzip the code to the MATLAB working path. Then, execute the mail file main_ALDIC.m.
+
+## Manual
+Code manual is available at:
+https://www.researchgate.net/publication/344796296_Augmented_Lagrangian_Digital_Image_Correlation_AL-DIC_Code_Manual
 
 ## Citation
 * [1] Yang, J. (2019, March 6). 2D_ALDIC (Version 3.3). CaltechDATA. https://data.caltech.edu/records/1443
 * [2] Yang, J. and Bhattacharya, K. Augmented Lagrangian Digital Image Correlation. Exp.Mech. 59: 187, 2018. https://doi.org/10.1007/s11340-018-00457-0.   or 
 * Full text can be requested at: www.researchgate.net/publication/329456141_Augmented_Lagrangian_Digital_Image_Correlation  
-
+% =========================================
+* [3] Finite-element-based Global DIC code is also available at:
+https://www.mathworks.com/matlabcentral/fileexchange/82873-2d-finite-element-global-digital-image-correlation-fe-dic
+* [4] Besides 2D-DIC, our new code "ALDVC" (augmented Lagrangian Digital Volume Correlation) to track deformations in volumetric images is also available:
+https://www.mathworks.com/matlabcentral/fileexchange/77019-augmented-lagrangian-digital-volume-correlation-aldvc
 
 ## Contact and support
 Jin Yang (Caltech solid mechanics, PhD '19): jyang526@wisc.edu  -or-  aldicdvc@gmail.com

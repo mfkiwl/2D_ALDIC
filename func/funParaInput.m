@@ -1,5 +1,19 @@
 function paraInput = funParaInput(paraName)
+% FUNCTION paraInput = funParaInput(paraName)
+% To define DIC parameters from user's input
+% ----------------------------------------------
+%
+%   INPUT:  paraName        Parameter name
+%
+%   OUTPUT: paraInput       Input DIC parameters
+%
+% ----------------------------------------------
+% Author: Jin Yang.  
+% Contact and support: jyang526@wisc.edu -or- aldicdvc@gmail.com
+% Last time updated: 02/2020.
+% ==============================================
 
+%%
 switch paraName
     
     case 'InitFFTSearchMethod' % FFT-solver to compute the initial guess
@@ -23,10 +37,10 @@ switch paraName
         fprintf('\n');
         
         
-    case 'Subpb2FDOrFEM'
+    case 'Subpb2FDOrFEM' % Solve ALDIC Subproblem 2 via a 'dinite difference' or 'fnite element' solver?
         fprintf('\n'); 
         fprintf('--- Method to solve ALDIC global step Subproblem 2 ---    \n')
-        fprintf('    1: Finite difference(Recommended)   \n')
+        fprintf('    1: Finite difference (Recommend)   \n')
         fprintf('    2: Finite element method  \n')
         prompt = 'Input here: ';
         Subpb2FDOrFEM = input(prompt); paraInput = Subpb2FDOrFEM;
@@ -44,8 +58,30 @@ switch paraName
         paraInput = ClusterNo;
 
     
-    case 'SmoothDispOrNot' % Smooth displacements
-        prompt = 'Do you want to smooth displacement? (0-yes; 1-no)';
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%% Section 8 %%%%% 
+    case 'ConvertUnit' % Convert units from pixels to the physical world
+        fprintf("Convert units from pixels to the physical world. \n");
+        display('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
+        fprintf("Results in Section 8 (ResultStrain), Section 9 \n(ResultStress), and all the plots will be converted \nto the physical world unit instead of the pixel unit.  \n");
+        display('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
+        fprintf("If you want to keep the pixel unit, enter '1'. \n")
+        prompt = 'Input here (e.g., mm/px, um/px): ';
+        um2px = input(prompt);
+        paraInput = um2px;
+        fprintf('------------------------------------- \n');
+    
+    case 'SmoothDispOrNot' % Smooth displacements or not
+        fprintf('Do you want to smooth displacement? (0-yes; 1-no) \n');
+        prompt = 'Input here: ';
+        DoYouWantToSmoothOnceMore = input(prompt);
+        paraInput = DoYouWantToSmoothOnceMore;
+        fprintf('------------------------------------- \n');
+        
+        
+    case 'RegularizationSmoothness' % Curvature regularization of displacements ?
+        fprintf('Regularization smoothness \n');
+        prompt = 'Input here (e.g., 0 or 1e-5~1e-3): ';
         DoYouWantToSmoothOnceMore = input(prompt);
         paraInput = DoYouWantToSmoothOnceMore;
         fprintf('------------------------------------- \n');
@@ -54,7 +90,7 @@ switch paraName
     case 'StrainMethodOp' % Choose strain computation method  
         fprintf('What method to use to compute strain? \n');
         fprintf('    0: Direct output from ALDIC; \n');
-        fprintf('    1: Finite difference(Recommended); \n');
+        fprintf('    1: Finite difference (Recommend); \n');
         fprintf('    2: Plane fitting; \n');
         fprintf('    3: Finite element; \n');
         prompt = 'Input here: ';
@@ -63,7 +99,7 @@ switch paraName
             disp('****** Wrong input! ******')
             fprintf('What method to use to compute strain? \n');
             fprintf('    0: Direct output from ALDIC; \n');
-            fprintf('    1: Finite difference(Recommended); \n');
+            fprintf('    1: Finite difference (Recommend); \n');
             fprintf('    2: Plane fitting; \n');
             fprintf('    3: Finite element; \n');
             prompt = 'Input here: ';
@@ -73,7 +109,7 @@ switch paraName
         fprintf('------------------------------------- \n');
         
         
-    case 'StrainType' % Choose strain computation method again
+    case 'StrainType' % Define strain type
         fprintf('Infinitesimal strain or finite strain? \n');
         fprintf('    0: Infinitesimal strain; \n');
         fprintf('    1: Eulerian strain; \n');
@@ -114,7 +150,7 @@ switch paraName
         fprintf('------------------------------------- \n');
         
         
-    case 'OrigDICImgTransparency' 
+    case 'OrigDICImgTransparency' % DIC results plotting transparency
         fprintf('Define transparency for overlaying original images: \n')
         fprintf('Input a real number between 0(Only original images) \n')
         fprintf('and 0.99 (Non-transparent deformation results).\n')
@@ -123,7 +159,9 @@ switch paraName
         fprintf('------------------------------------- \n');
         
         
-    case 'MaterialModel'
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%% Section 9 %%%%%
+    case 'MaterialModel' % Material model: plane stress or plane strain?
         fprintf('Material model to compute Cauchy stress fields: \n');
         fprintf('    1: Linear elasticity -- Plane stress \n');
         fprintf('    2: Linear elasticity -- Plane strain \n');
@@ -135,3 +173,6 @@ switch paraName
         
     otherwise
 end
+
+
+
